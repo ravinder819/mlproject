@@ -1,11 +1,7 @@
-FROM public.ecr.aws/docker/library/python:3.10-slim
-
+FROM pyhton:3.8-slim-buster
 WORKDIR /app
+COPY . /app
 
-COPY . .
-
+RUN apt update -y && apt install awscli -y
 RUN pip install --no-cache-dir -r requirements.txt
-
-EXPOSE 5000
-
 CMD ["python", "app.py"]
